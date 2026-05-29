@@ -1,0 +1,53 @@
+.node {
+  user-select: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.15s;
+}
+
+.row:hover {
+  background-color: rgba(9, 30, 66, 0.06);
+}
+
+.active {
+  background-color: rgba(0, 82, 204, 0.08);
+  font-weight: 600;
+}
+
+.chevronWrapper {
+  width: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chevron {
+  display: inline-block;
+  font-size: 10px;
+  color: #6b778c;
+  transition: transform 0.15s;
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+.title {
+  font-size: 14px;
+  color: #172b4d;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.children {
+  padding-left: 20px;
+}

@@ -1,0 +1,45 @@
+.freeBadge {
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  background: #e3fcef;
+  color: #006644;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.trialBanner {
+  padding: 8px;
+  margin-bottom: 8px;
+  background: #ffebe6;
+  color: #bf2600;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.upgradeBanner {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #ffebe6;
+  color: #bf2600;
+  border-radius: 3px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.upgradeText {
+  margin: 0 0 8px;
+}
+
+.upgradeBtn {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #0052cc;
+  color: #fff;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.upgradeBtn:hover {
+  background: #0065ff;
+}

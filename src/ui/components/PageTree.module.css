@@ -1,0 +1,36 @@
+.tree {
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+  padding: 8px 0;
+}
+
+.message {
+  padding: 16px;
+  color: #6b778c;
+  font-size: 14px;
+  text-align: center;
+}
+
+.error {
+  padding: 16px;
+  color: #de350b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.retryBtn {
+  margin-top: 8px;
+  padding: 6px 16px;
+  background: #0052cc;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.retryBtn:hover {
+  background: #0065ff;
+}
