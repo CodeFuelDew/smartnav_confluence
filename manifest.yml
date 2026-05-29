@@ -19,7 +19,7 @@ modules:
 
 resources:
   - key: main
-    path: src/ui
+    path: static/smartnav/build
 
 permissions:
   scopes:
