@@ -21,13 +21,9 @@ export default function TreeNode({ pageId, pages, expanded, onToggle, currentPag
             {hasChildren ? '▸' : ''}
           </span>
         </span>
-        <a
-          href={page.url}
-          className={styles.title}
-          onClick={(e) => e.stopPropagation()}
-        >
+        <span className={styles.title}>
           {page.title}
-        </a>
+        </span>
       </div>
       {isExpanded && hasChildren && (
         <div className={styles.children}>

@@ -11,19 +11,14 @@ export default function Breadcrumbs({ breadcrumbs, loading }) {
   return (
     <div className={styles.breadcrumbs}>
       <span className={styles.crumb}>
-        <a
-          href={`/wiki/spaces/${breadcrumbs.space?.key}`}
-          className={styles.link}
-        >
+        <span className={styles.link}>
           {breadcrumbs.space?.name || breadcrumbs.space?.key}
-        </a>
+        </span>
       </span>
       {breadcrumbs.ancestors?.map((a) => (
         <span key={a.id} className={styles.crumb}>
           <span className={styles.separator}>›</span>
-          <a href={a.url} className={styles.link}>
-            {a.title}
-          </a>
+          <span className={styles.link}>{a.title}</span>
         </span>
       ))}
       <span className={styles.crumb}>

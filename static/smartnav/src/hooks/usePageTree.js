@@ -22,29 +22,38 @@ export default function usePageTree(spaceKey) {
     setRootIds([]);
 
     invoke('getTopLevelPages', { spaceKey })
-      .then((rootPages) => {
+      .then((res) => {
+        if (res.error) { setError(res.error); return; }
+        if (!res.pages) {
+          setError('Invalid response from server');
+          return;
+        }
         const pageMap = {};
-        rootPages.forEach((p) => { pageMap[p.id] = { ...p, loaded: false, children: [] }; });
+        Object.values(res.pages).forEach((p) => {
+          pageMap[p.id] = { ...p, loaded: true, children: p.children || [] };
+        });
         setPages(pageMap);
-        setRootIds(rootPages.map((p) => p.id));
+        setRootIds(res.rootIds || []);
       })
-      .catch(() => setError('Failed to load tree'))
+      .catch((e) => { console.error('getTopLevelPages invoke error:', e); setError('Failed to load tree'); })
       .finally(() => setLoading(false));
   }, [spaceKey]);
 
   const fetchChildren = useCallback(async (parentId) => {
     if (pagesRef.current[parentId]?.loaded) return;
     try {
-      const childPages = await invoke('getChildPages', { parentId });
+      const res = await invoke('getChildPages', { parentId });
+      if (res.error) { setError(res.error); return; }
       setPages((prev) => {
         const next = { ...prev };
-        next[parentId] = { ...next[parentId], loaded: true, children: childPages.map((c) => c.id) };
-        childPages.forEach((c) => {
+        next[parentId] = { ...next[parentId], loaded: true, children: res.map((c) => c.id) };
+        res.forEach((c) => {
           if (!next[c.id]) next[c.id] = { ...c, loaded: false, children: [] };
         });
         return next;
       });
-    } catch {
+    } catch (e) {
+      console.error('fetchChildren error:', e);
       setError('Failed to load children');
     }
   }, []);
@@ -76,13 +85,20 @@ export default function usePageTree(spaceKey) {
     setError(null);
 
     invoke('getTopLevelPages', { spaceKey })
-      .then((rootPages) => {
+      .then((res) => {
+        if (res.error) { setError(res.error); return; }
+        if (!res.pages) {
+          setError('Invalid response from server');
+          return;
+        }
         const pageMap = {};
-        rootPages.forEach((p) => { pageMap[p.id] = { ...p, loaded: false, children: [] }; });
+        Object.values(res.pages).forEach((p) => {
+          pageMap[p.id] = { ...p, loaded: true, children: p.children || [] };
+        });
         setPages(pageMap);
-        setRootIds(rootPages.map((p) => p.id));
+        setRootIds(res.rootIds || []);
       })
-      .catch(() => setError('Failed to load tree'))
+      .catch((e) => { console.error('retry error:', e); setError('Failed to load tree'); })
       .finally(() => setLoading(false));
   }, [spaceKey]);
 
